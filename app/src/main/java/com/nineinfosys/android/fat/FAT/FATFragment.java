@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,6 +78,9 @@ public class FATFragment  extends Fragment {
         buttonCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //for hiding keyboard
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 if (radioGroupSex.getCheckedRadioButtonId() == -1) {
                     if (editTextAge.getText().toString().equals("")) {
                         editTextAge.setError("Enter Age");
@@ -101,6 +106,9 @@ public class FATFragment  extends Fragment {
                 }
             }
         });
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
         return v;
     }
 public void calculateFAT(float age,float bmi,String gender){
