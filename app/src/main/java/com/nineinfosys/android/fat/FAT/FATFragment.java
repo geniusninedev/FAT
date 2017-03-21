@@ -16,6 +16,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.nineinfosys.android.fat.MainActivityDrawer;
 import com.nineinfosys.android.fat.R;
 
@@ -32,6 +36,13 @@ public class FATFragment  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_main_fat, null);
+        MobileAds.initialize(getActivity(), getString(R.string.ads_app_id));
+        AdView mAdView = (AdView) v.findViewById(R.id.adViewMainPagefat);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+
         ((MainActivityDrawer) getActivity()).toolbar.setTitle("FAT");
         //Initialising Views
         editTextAge=(EditText)v.findViewById(R.id.editTextAge);
