@@ -26,8 +26,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
@@ -36,21 +34,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.nineinfosys.android.fat.Contacts.Contacts;
 import com.nineinfosys.android.fat.DashBord.GetApp;
 import com.nineinfosys.android.fat.FAT.FATFragment;
-
 import com.nineinfosys.android.fat.FoodNutritionTable.FoodNutritionTable;
-import com.nineinfosys.android.fat.Forum.ForumActivity;
 import com.nineinfosys.android.fat.LoginActivity.Login;
-import com.squareup.okhttp.OkHttpClient;
-
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.WRITE_CONTACTS;
 
@@ -110,34 +100,14 @@ public class MainActivityDrawer extends AppCompatActivity {
          */
      ;
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //  Toast.makeText(MainActivityDrawer.this,"This Is Under Consturtion", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivityDrawer.this, ForumActivity.class));
-                /*Intent intent = new Intent(MainActivity.this, NewMessageActivity.class);
-                startActivity(intent);*/
-            }
-        });
-
-
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 mDrawerLayout.closeDrawers();
 
-                if (menuItem.getItemId() == R.id.FAT) {
-                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new FATFragment()).commit();
-                  /*  Intent intent=new Intent(MainActivityDrawer.this, com.nineinfosys.android.weightlosscalculators.FAT.ForumMainActivity.class);
-                    startActivity(intent);*/
-                }
+
                 if (menuItem.getItemId() == R.id.FoodNutritionTable) {
-                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new FoodNutritionTable()).commit();
-                    /*Intent intent=new Intent(MainActivityDrawer.this, com.nineinfosys.android.weightlosscalculators.Weight.ForumMainActivity.class);
-                    startActivity(intent);*/
+                  startActivity(new Intent(MainActivityDrawer.this,FoodNutritionTable.class));
                 }
                 if (menuItem.getItemId() == R.id.MoreApps) {
 
